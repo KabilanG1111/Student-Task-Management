@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "name": "Leo M",
+        "leetcode": "leo_codes",
+        "codechef": "leo_cc",
+        "leetcodeSolved": 15,
+        "codechefSolved": 10,
+        "week": "Week 1",
+        "screenshot": "placeholder-image",
+        "status": "Pending"
+    },
+    {
+        "id": 2,
+        "name": "Sarah J",
+        "leetcode": "sarah_j",
+        "codechef": "sarah_cc",
+        "leetcodeSolved": 20,
+        "codechefSolved": 5,
+        "week": "Week 2",
+        "screenshot": "placeholder-image",
+        "status": "Approved"
+    },
+    {
+        "id": 3,
+        "name": "Mike R",
+        "leetcode": "mike_rock",
+        "codechef": "mike_code",
+        "leetcodeSolved": 10,
+        "codechefSolved": 12,
+        "week": "Week 3",
+        "screenshot": "placeholder-image",
+        "status": "Rejected"
+    },
+    {
+        "id": 4,
+        "name": "Emily C",
+        "leetcode": "emily_c",
+        "codechef": "emily_c_cc",
+        "leetcodeSolved": 5,
+        "codechefSolved": 0,
+        "week": "Week 1",
+        "screenshot": "placeholder-image",
+        "status": "Pending"
+    },
+    {
+        "id": 5,
+        "name": "David W",
+        "leetcode": "david_w",
+        "codechef": "david_w_cc",
+        "leetcodeSolved": 25,
+        "codechefSolved": 20,
+        "week": "Week 4",
+        "screenshot": "placeholder-image",
+        "status": "Approved"
+    },
+    {
+        "id": 6,
+        "name": "Jessica T",
+        "leetcode": "jessica_t",
+        "codechef": "jessica_t_cc",
+        "leetcodeSolved": 12,
+        "codechefSolved": 8,
+        "week": "Week 2",
+        "screenshot": "placeholder-image",
+        "status": "Approved"
+    },
+    {
+        "id": 7,
+        "name": "Brian K",
+        "leetcode": "brian_k",
+        "codechef": "brian_k_cc",
+        "leetcodeSolved": 8,
+        "codechefSolved": 2,
+        "week": "Week 3",
+        "screenshot": "placeholder-image",
+        "status": "Pending"
+    },
+    {
+        "id": 8,
+        "name": "Olivia P",
+        "leetcode": "olivia_p",
+        "codechef": "olivia_p_cc",
+        "leetcodeSolved": 30,
+        "codechefSolved": 25,
+        "week": "Week 1",
+        "screenshot": "placeholder-image",
+        "status": "Approved"
+    },
+    {
+        "id": 9,
+        "name": "Daniel H",
+        "leetcode": "daniel_h",
+        "codechef": "daniel_h_cc",
+        "leetcodeSolved": 18,
+        "codechefSolved": 15,
+        "week": "Week 4",
+        "screenshot": "placeholder-image",
+        "status": "Rejected"
+    },
+    {
+        "id": 10,
+        "name": "Sophia G",
+        "leetcode": "sophia_g",
+        "codechef": "sophia_g_cc",
+        "leetcodeSolved": 22,
+        "codechefSolved": 18,
+        "week": "Week 2",
+        "screenshot": "placeholder-image",
+        "status": "Pending"
+    }
+]

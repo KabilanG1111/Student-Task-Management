@@ -1,0 +1,28 @@
+
+> students-task-management@0.0.0 build
+> vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 2397 modules transformed.
+[31m✗[39m Build failed in 3.52s
+[31merror during build:
+[31msrc/components/Sidebar.jsx (3:44): "ShieldStar" is not exported by "node_modules/lucide-react/dist/esm/lucide-react.js", imported by "src/components/Sidebar.jsx".[31m
+file: [36mF:/Students Task Management/src/components/Sidebar.jsx:3:44[31m
+[33m
+1: import React from 'react';
+2: import { NavLink, useLocation } from 'react-router-dom';
+3: import { LayoutDashboard, TrendingUp, Send, ShieldStar, Code2 } from 'lucide-react';
+                                               ^
+4: import clsx from 'clsx';
+[31m
+    at getRollupError (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/parseAst.js:402:41)
+    at error (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/parseAst.js:398:42)
+    at Module.error (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:17040:16)
+    at Module.traceVariable (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:17452:29)
+    at ModuleScope.findVariable (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:15070:39)
+    at ReturnValueScope.findVariable (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:5673:38)
+    at FunctionBodyScope.findVariable (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:5673:38)
+    at Identifier.bind (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:5447:40)
+    at Property.bind (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:2829:23)
+    at ObjectExpression.bind (file:///F:/Students%20Task%20Management/node_modules/rollup/dist/es/shared/node-entry.js:2825:28)[39m
