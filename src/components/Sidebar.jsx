@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { LayoutDashboard, TrendingUp, Trophy, Send, ShieldCheck, Settings, Hexagon } from 'lucide-react';
+import { LayoutDashboard, TrendingUp, Trophy, Send, ShieldCheck, Settings, Hexagon, LogOut } from 'lucide-react';
 import { motion, LayoutGroup } from 'framer-motion';
 import clsx from 'clsx';
 
@@ -62,7 +62,17 @@ const Sidebar = () => {
                 </LayoutGroup>
             </nav>
 
-            <div className="mt-auto">
+            <div className="mt-auto flex flex-col items-center gap-4">
+                <button
+                    onClick={() => {
+                        localStorage.removeItem('studentData');
+                        window.location.href = '/login';
+                    }}
+                    className="relative group flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-300 hover:bg-red-500/10"
+                    title="Logout"
+                >
+                    <LogOut size={20} className="text-zinc-500 group-hover:text-red-400 transition-colors" />
+                </button>
                 <div className="w-10 h-10 rounded-full bg-surface border border-white/10 overflow-hidden cursor-pointer hover:border-primary-500/50 transition-colors shadow-none hover:shadow-glow">
                     <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Leo&backgroundColor=0f0f17`} alt="User avatar" className="w-full h-full object-cover" />
                 </div>
