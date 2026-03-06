@@ -1,114 +1,146 @@
-import React, { useState } from 'react';
-import { UploadCloud, CheckCircle2, Code2, Trophy } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Code2, Flame, TrendingUp } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+
+const data = [
+    { name: 'Mon', LeetCode: 4, CodeChef: 2 },
+    { name: 'Tue', LeetCode: 7, CodeChef: 5 },
+    { name: 'Wed', LeetCode: 5, CodeChef: 8 },
+    { name: 'Thu', LeetCode: 10, CodeChef: 4 },
+    { name: 'Fri', LeetCode: 15, CodeChef: 12 },
+    { name: 'Sat', LeetCode: 22, CodeChef: 18 },
+    { name: 'Sun', LeetCode: 18, CodeChef: 15 },
+];
+
+const StatCard = ({ title, value, subtitle, icon: Icon, colorClass, delay }) => (
+    <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay, duration: 0.5 }}
+        className="glass-card rounded-3xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300"
+    >
+        <div className={`absolute -right-6 -top-6 w-32 h-32 ${colorClass} opacity-10 rounded-full blur-3xl group-hover:opacity-20 transition-opacity`}></div>
+        <div className="flex justify-between items-start mb-4">
+            <div className={`p-3 rounded-2xl bg-surface/80 border border-white/5 shadow-inner backdrop-blur-md`}>
+                <Icon className={colorClass.replace('bg-', 'text-')} size={24} />
+            </div>
+            <span className="text-emerald-400 text-sm font-medium bg-emerald-400/10 px-2 py-1 rounded-lg border border-emerald-400/20">
+                +12%
+            </span>
+        </div>
+        <div>
+            <h3 className="text-4xl font-bold text-white mb-1 tracking-tight">{value}</h3>
+            <p className="text-sm font-medium text-zinc-400">{title}</p>
+            <p className="text-xs text-zinc-600 mt-2">{subtitle}</p>
+        </div>
+    </motion.div>
+);
+
+const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+        return (
+            <div className="glass-card p-4 rounded-xl shadow-neon border border-primary-500/20">
+                <p className="text-zinc-300 font-medium mb-3">{label}</p>
+                {payload.map((entry, index) => (
+                    <div key={index} className="flex items-center gap-3 text-sm mt-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full shadow-glow" style={{ backgroundColor: entry.color }} />
+                        <span className="text-zinc-400 w-20">{entry.name}</span>
+                        <span className="font-bold text-white">{entry.value}</span>
+                    </div>
+                ))}
+            </div>
+        );
+    }
+    return null;
+};
 
 const StudentDashboard = () => {
-    const [formData, setFormData] = useState({
-        name: 'Leo M',
-        leetcode: 'leo_codes',
-        codechef: 'leo_cc',
-        leetcodeSolved: '',
-        codechefSolved: '',
-    });
-    const [submitted, setSubmitted] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 3000);
-    };
-
     return (
-        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in duration-500">
-            <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-bold tracking-tight text-white">Welcome back, Leo! 👋</h1>
-                <p className="text-zinc-400">Track your coding journey and submit your weekly progress.</p>
+        <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-700">
+            <div className="flex flex-col gap-2 relative z-10">
+                <motion.h1
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-4xl font-bold tracking-tight text-white flex items-center gap-3"
+                >
+                    Welcome back, Leo <span className="animate-bounce origin-bottom">👋</span>
+                </motion.h1>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Stats Cards */}
-                <div className="glass-card rounded-2xl p-6 flex items-center gap-4 bg-gradient-to-br from-surface to-background relative overflow-hidden group">
-                    <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl group-hover:bg-primary-500/20 transition-all"></div>
-                    <div className="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-500 flex items-center justify-center border border-orange-500/20">
-                        <Trophy size={24} />
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                <StatCard
+                    title="Total Problems Solved"
+                    value="482"
+                    subtitle="Across all platforms"
+                    icon={Code2}
+                    colorClass="bg-primary-500 text-primary-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]"
+                    delay={0.1}
+                />
+                <StatCard
+                    title="Current Coding Streak"
+                    value="14 Days"
+                    subtitle="Keep it up!"
+                    icon={Flame}
+                    colorClass="bg-orange-500 text-orange-400 drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]"
+                    delay={0.2}
+                />
+                <StatCard
+                    title="Weekly Growth"
+                    value="24%"
+                    subtitle="Compared to last week"
+                    icon={TrendingUp}
+                    colorClass="bg-emerald-500 text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+                    delay={0.3}
+                />
+            </div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="glass-card rounded-3xl p-6 md:p-8 relative overflow-hidden group border border-white/5 hover:border-primary-500/30 hover:shadow-glow transition-all duration-500 h-[450px]"
+            >
+                <div className="absolute top-0 right-0 w-96 h-96 bg-primary-600/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary-600/10 transition-colors duration-700"></div>
+
+                <div className="flex items-center justify-between mb-8">
                     <div>
-                        <p className="text-sm font-medium text-zinc-400">Total LeetCode</p>
-                        <p className="text-2xl font-bold text-white">142</p>
+                        <h2 className="text-xl font-semibold text-white tracking-wide">Weekly Activity Heatmap</h2>
+                        <p className="text-sm text-zinc-500 mt-1">Consistency across platforms</p>
+                    </div>
+                    <div className="flex gap-4 text-sm">
+                        <div className="flex items-center gap-2">
+                            <span className="w-3 h-3 rounded-full bg-primary-500 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></span>
+                            <span className="text-zinc-400">LeetCode</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
+                            <span className="text-zinc-400">CodeChef</span>
+                        </div>
                     </div>
                 </div>
 
-                <div className="glass-card rounded-2xl p-6 flex items-center gap-4 bg-gradient-to-br from-surface to-background relative overflow-hidden group">
-                    <div className="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center border border-blue-500/20">
-                        <Code2 size={24} />
-                    </div>
-                    <div>
-                        <p className="text-sm font-medium text-zinc-400">Total CodeChef</p>
-                        <p className="text-2xl font-bold text-white">89</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Submission Form */}
-            <div className="glass-card rounded-3xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-600 via-primary-400 to-primary-600"></div>
-                <h2 className="text-xl font-semibold text-white mb-6">Submit Weekly Progress</h2>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-zinc-300">Student Name</label>
-                            <input type="text" value={formData.name} disabled className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none opacity-70 cursor-not-allowed" />
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-zinc-300">Week</label>
-                            <select className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-primary-500/50 appearance-none">
-                                <option>Week 1</option>
-                                <option>Week 2</option>
-                                <option>Week 3</option>
-                                <option>Week 4</option>
-                                <option>Week 5</option>
-                            </select>
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-zinc-300">LeetCode Solved This Week</label>
-                            <input type="number" min="0" required placeholder="e.g. 15" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-primary-500/50 focus:ring-1 focus:ring-primary-500/50 transition-all" />
-                        </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-zinc-300">CodeChef Solved This Week</label>
-                            <input type="number" min="0" required placeholder="e.g. 10" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-primary-500/50 focus:ring-1 focus:ring-primary-500/50 transition-all" />
-                        </div>
-                    </div>
-
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-zinc-300">Upload Screenshots Proof</label>
-                        <div className="border-2 border-dashed border-white/10 rounded-2xl p-8 hover:border-primary-500/50 hover:bg-primary-500/5 transition-all group cursor-pointer flex flex-col items-center justify-center text-center">
-                            <div className="w-12 h-12 rounded-full bg-primary-500/20 text-primary-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                <UploadCloud size={24} />
-                            </div>
-                            <p className="text-zinc-200 font-medium mb-1">Click to upload or drag and drop</p>
-                            <p className="text-sm text-zinc-500">SVG, PNG, JPG or GIF (max. 5MB)</p>
-                        </div>
-                    </div>
-
-                    <div className="pt-4 flex items-center justify-between">
-                        {submitted ? (
-                            <div className="flex items-center gap-2 text-emerald-400 bg-emerald-400/10 px-4 py-2 rounded-lg">
-                                <CheckCircle2 size={18} />
-                                <span className="text-sm font-medium">Progress submitted successfully!</span>
-                            </div>
-                        ) : (
-                            <div />
-                        )}
-                        <button type="submit" className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-medium py-3 px-8 rounded-xl shadow-lg shadow-primary-500/25 transition-all hover:shadow-primary-500/40 hover:-translate-y-0.5 active:translate-y-0">
-                            Submit Progress
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <ResponsiveContainer width="100%" height="80%">
+                    <AreaChart data={data} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+                        <defs>
+                            <linearGradient id="colorLeet" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#a855f7" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="#a855f7" stopOpacity={0} />
+                            </linearGradient>
+                            <linearGradient id="colorChef" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                            </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" vertical={false} />
+                        <XAxis dataKey="name" stroke="#52525b" tick={{ fill: '#a1a1aa', fontSize: 12 }} axisLine={false} tickLine={false} dy={10} />
+                        <YAxis stroke="#52525b" tick={{ fill: '#a1a1aa', fontSize: 12 }} axisLine={false} tickLine={false} />
+                        <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#ffffff10', strokeWidth: 1, strokeDasharray: '5 5' }} />
+                        <Area type="monotone" dataKey="LeetCode" stroke="#a855f7" strokeWidth={3} fillOpacity={1} fill="url(#colorLeet)" activeDot={{ r: 6, fill: '#a855f7', stroke: '#000', strokeWidth: 2 }} />
+                        <Area type="monotone" dataKey="CodeChef" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorChef)" activeDot={{ r: 6, fill: '#3b82f6', stroke: '#000', strokeWidth: 2 }} />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </motion.div>
         </div>
     );
 };

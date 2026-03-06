@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import StudentDashboard from './pages/StudentDashboard';
 import WeeklyProgress from './pages/WeeklyProgress';
 import AdminDashboard from './pages/AdminDashboard';
+import SubmitProgress from './pages/SubmitProgress';
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
           <Route index element={<Navigate to="/student-dashboard" replace />} />
           <Route path="student-dashboard" element={<StudentDashboard />} />
           <Route path="progress" element={<WeeklyProgress />} />
+          <Route path="leaderboard" element={<Navigate to="/student-dashboard" replace />} />
+          <Route path="submit" element={<SubmitProgress />} />
           <Route path="admin" element={<AdminDashboard />} />
+          <Route path="settings" element={<Navigate to="/student-dashboard" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
